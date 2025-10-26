@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8"><title>web30 upload</title></head>
+<body>
+<h1>Upload image (or text)</h1>
+<form action="/upload" method="post" enctype="multipart/form-data">
+  <input type="file" name="file" />
+  <input type="submit" value="Upload" />
+</form>
+
+<h2>Uploaded files</h2>
+<ul>
+  {% for f in files %}
+    <li><a href="/view?file={{ f }}">{{ f }}</a></li>
+  {% else %}
+    <li>No files</li>
+  {% endfor %}
+</ul>
+
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    <ul>
+      {% for m in messages %}
+        <li>{{ m }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+</body>
+</html>

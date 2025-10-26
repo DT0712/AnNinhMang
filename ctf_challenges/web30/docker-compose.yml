@@ -1,0 +1,21 @@
+version: "3.8"
+services:
+  web30:
+    build: .
+    container_name: ctf_web30
+    restart: unless-stopped
+    ports:
+      - "18180:8080"   # map host 18180 -> container 8080 for local testing
+    mem_limit: 200m
+    cpus: "0.5"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    networks:
+      - ctf_net
+
+networks:
+  ctf_net:
+    driver: bridge
+    internal: false
