@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  crypto20:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      - FLAG=FLAG{local_test_flag}
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.25"
+          memory: 200M
